@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     <title>Magic Mirror</title>
 </head>
 <body>
-    <section id="time">
-        <span id="current-time"></span>
+    <section id="time" aria-label="Analog Clock">
+        <figure id="clock">
+            <div class="hand hour" id="hour-hand"></div>
+            <div class="hand minute" id="minute-hand"></div>
+            <div class="hand second" id="second-hand"></div>
+            <div class="center-dot"></div>
+        </figure>
     </section>
-    <section id="weather">
-        {{ weather.temp }}°C, {{ weather.description }}<br>
-        <span style="font-size:0.9em;">{{ weather.location }}</span>
+    <section id="weather" aria-label="Weather">
+        <p>{{ weather.temp }}°C, {{ weather.description }}<br>
+        <span style="font-size:0.9em;">{{ weather.location }}</span></p>
     </section>
-    <section id="music">
-        <strong>{{ spotify.track }}</strong> <span style="font-size:0.95em;">by</span> {{ spotify.artist }}
+    <section id="music" aria-label="Music">
+        <p><strong>{{ spotify.track }}</strong> <span style="font-size:0.95em;">by</span> {{ spotify.artist }}</p>
     </section>
 </body>
 </html>
