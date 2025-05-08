@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <title>Magic Mirror</title>
+</head>
+<body>
+    <section id="mirror-container">
+        <header>
+            <h1>Magic Mirror</h1>
+        </header>
+        <main>
+            <section id="time">
+                {% block time %}
+                {% endblock %}
+            </section>
+            <section id="weather">
+                {% block weather %}
+                {% endblock %}
+            </section>
+            <section id="music">
+                {% block music %}
+                {% endblock %}
+            </section>
+        </main>
+    </section>
+</body>
+</html>
