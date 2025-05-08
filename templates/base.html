@@ -9,24 +9,15 @@
     <title>Magic Mirror</title>
 </head>
 <body>
-    <section id="mirror-container">
-        <header>
-            <h1>Magic Mirror</h1>
-        </header>
-        <main>
-            <section id="time">
-                {% block time %}
-                {% endblock %}
-            </section>
-            <section id="weather">
-                {% block weather %}
-                {% endblock %}
-            </section>
-            <section id="music">
-                {% block music %}
-                {% endblock %}
-            </section>
-        </main>
+    <section id="time">
+        {{ clock.time }}
+    </section>
+    <section id="weather">
+        {{ weather.temp }}°C, {{ weather.description }}<br>
+        <span style="font-size:0.9em;">{{ weather.location }}</span>
+    </section>
+    <section id="music">
+        <strong>{{ spotify.track }}</strong> <span style="font-size:0.95em;">by</span> {{ spotify.artist }}
     </section>
 </body>
 </html>
