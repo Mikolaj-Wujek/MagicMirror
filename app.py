@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, redirect, url_for, g, request
 from database import get_db, close_db
 from flask_session import Session
 from functools import wraps
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -14,8 +15,9 @@ def index():
         'location': 'Cork'
     }
 
+    now = datetime.now()
     clock = {
-        'time': '15:00'
+        'time': now.strftime('%H:%M:%S')
     }
 
     spotify = {
