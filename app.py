@@ -3,6 +3,7 @@ from database import get_db, close_db
 from flask_session import Session
 from functools import wraps
 from dotenv import load_dotenv
+from datetime import time
 import requests
 import os
 
@@ -16,8 +17,9 @@ def index():
     
     weather = getWeather()
 
+    now = datetime.now()
     clock = {
-        'time': '15:00'
+        'time': now.strftime('%H:%M:%S')
     }
 
     spotify = {
