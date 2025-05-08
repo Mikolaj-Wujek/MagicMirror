@@ -7,4 +7,20 @@ app = Flask(__name__)
 
 @app.route('/', methods = ['GET','POST'])
 def index():
-    return render_template('index.html')
+    
+    weather = {
+        'description': 'sunny',
+        'temp': '15',
+        'location': 'Cork'
+    }
+
+    clock = {
+        'time': '15:00'
+    }
+
+    spotify = {
+        'track' : 'currentSong',
+        'artist' : 'artistName'
+    }
+
+    return render_template('index.html',weather=weather,clock=clock,spotify=spotify)
