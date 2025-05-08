@@ -23,4 +23,4 @@ def index():
         'artist' : 'artistName'
     }
 
-    return render_template('index.html',weather=weather,clock=clock,spotify=spotify)
+    return render_template('base.html',weather=weather,clock=clock,spotify=spotify)
