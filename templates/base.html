@@ -21,6 +21,10 @@
     <section id="weather" aria-label="Weather">
         <p>{{ weather.temp }}°C, {{ weather.description }}<br>
         <span style="font-size:0.9em;">{{ weather.location }}</span></p>
+        {% if weather.icon_url %}
+            <img src="{{ weather.icon_url }}" alt="Weather Icon">
+        {% endif %}
+        <p>{{ weather.emoji }}</p>
     </section>
     <section id="music" aria-label="Music">
         <p><strong>{{ spotify.track }}</strong> <span style="font-size:0.95em;">by</span> {{ spotify.artist }}</p>
