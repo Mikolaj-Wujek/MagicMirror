@@ -1,0 +1,62 @@
+body {
+    background: #181818;
+    color: #f1f1f1;
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+#mirror-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #232323;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.7);
+    padding: 32px 24px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    letter-spacing: 2px;
+    color: #90caf9;
+    text-align: center;
+}
+
+main section {
+    margin-bottom: 32px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #212121;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+#time {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff59d;
+    text-align: center;
+}
+
+#weather {
+    font-size: 1.2rem;
+    color: #b3e5fc;
+    text-align: center;
+}
+
+#music {
+    font-size: 1.1rem;
+    color: #b9f6ca;
+    text-align: center;
+}
+
+a {
+    color: #90caf9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
