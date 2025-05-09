@@ -41,3 +41,96 @@ document.addEventListener('DOMContentLoaded', function() {
     updateClockHands();
     setInterval(updateClockHands, 1000);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const playBtn = document.getElementById('play-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const progress = document.getElementById('progress');
+    const timeCurrent = document.querySelector('.time-current');
+    const timeTotal = document.querySelector('.time-total');
+    
+    let isPlaying = false;
+    let currentTime = 0;
+    let duration = 225;
+    let progressInterval;
+    
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+    
+    function updateProgress() {
+        currentTime += 1;
+        const progressPercent = (currentTime / duration) * 100;
+        progress.style.width = `${progressPercent}%`;
+        timeCurrent.textContent = formatTime(currentTime);
+        
+        if (currentTime >= duration) {
+            togglePlay();
+        }
+    }
+    
+    function togglePlay() {
+        isPlaying = !isPlaying;
+        
+        if (isPlaying) {
+            document.getElementById('music').classList.add('playing');
+            progressInterval = setInterval(updateProgress, 1000);
+        } else {
+            document.getElementById('music').classList.remove('playing');
+            clearInterval(progressInterval);
+        }
+    }
+    
+    function nextTrack() {
+        currentTime = 0;
+        progress.style.width = '0%';
+        timeCurrent.textContent = '0:00';
+        document.querySelector('.track-title strong').textContent = 'New Track';
+        document.querySelector('.track-artist').textContent = 'New Artist';
+        timeTotal.textContent = '4:20';
+        duration = 260;
+        
+        if (isPlaying) {
+            clearInterval(progressInterval);
+            progressInterval = setInterval(updateProgress, 1000);
+        }
+    }
+    
+    function prevTrack() {
+        currentTime = 0;
+        progress.style.width = '0%';
+        timeCurrent.textContent = '0:00';
+        document.querySelector('.track-title strong').textContent = 'Previous Track';
+        document.querySelector('.track-artist').textContent = 'Previous Artist';
+        timeTotal.textContent = '2:30';
+        duration = 150;
+        
+        if (isPlaying) {
+            clearInterval(progressInterval);
+            progressInterval = setInterval(updateProgress, 1000);
+        }
+    }
+    
+    document.querySelector('.progress-bar').addEventListener('click', function(e) {
+        const progressBar = this;
+        const clickPosition = e.clientX - progressBar.getBoundingClientRect().left;
+        const progressBarWidth = progressBar.clientWidth;
+        const seekPercentage = clickPosition / progressBarWidth;
+        currentTime = duration * seekPercentage;
+        
+        if (isPlaying) {
+            clearInterval(progressInterval);
+            progressInterval = setInterval(updateProgress, 1000);
+        }
+    });
+    
+    playBtn.addEventListener('click', togglePlay);
+    nextBtn.addEventListener('click', nextTrack);
+    prevBtn.addEventListener('click', prevTrack);
+    
+    timeTotal.textContent = formatTime(duration);
+    timeCurrent.textContent = '0:00';
+});
