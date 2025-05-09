@@ -53,4 +53,3 @@ def getWeather(location='Cork'):
             'icon_url': None,
             'emoji': '🌥️'  
         }
-    
