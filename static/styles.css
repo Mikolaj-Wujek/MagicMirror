@@ -12,13 +12,38 @@ body {
 
 #clock {
     position: relative;
-    width: 140px;
-    height: 140px;
+    width: 240px;
+    height: 240px;
     margin: 32px 0 0 32px;
-    border: 4px solid #444;
+    border: 2px solid rgba(179, 229, 252, 0.3);
     border-radius: 50%;
-    background: #222;
-    box-shadow: 0 0 16px #000a;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 30px rgba(179, 229, 252, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+#clock::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 96%;
+    height: 96%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+}
+
+#clock::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 12px;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.6);
+    transform: translateX(-50%);
 }
 
 .hand {
@@ -27,42 +52,84 @@ body {
     top: 50%;
     transform-origin: 0% 50%;
     transform: rotate(90deg);
-    border-radius: 2px;
-    transition: all 0.1s cubic-bezier(.4,2.08,.55,.44);
+    border-radius: 4px;
+    transition: transform 0.2s cubic-bezier(0.4, 2.08, 0.55, 0.44);
 }
 
 .hand.hour {
-    width: 40px;
-    height: 4px;
-    background: #fff59d;
+    width: 80px;
+    height: 6px;
+    background: #fff; /* White */
     z-index: 3;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .hand.minute {
-    width: 55px;
-    height: 3px;
-    background: #b3e5fc;
+    width: 110px;
+    height: 4px;
+    background: #fff; /* White */
     z-index: 2;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .hand.second {
-    width: 65px;
+    width: 120px;
     height: 2px;
-    background: #b9f6ca;
+    background: #b3e5fc; /* Light blue */
     z-index: 1;
+    box-shadow: 0 0 15px rgba(179, 229, 252, 0.8);
 }
 
 .center-dot {
     position: absolute;
-    width: 14px;
-    height: 14px;
-    background: #fff;
+    width: 16px;
+    height: 16px;
+    background: #b3e5fc; /* Light blue */
+    border: 2px solid #fff;
     border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    box-shadow: 0 0 6px #000a;
+    box-shadow: 0 0 15px rgba(179, 229, 252, 0.5);
+}
+
+/* Clock numbers */
+.clock-number {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: 'Roboto', Arial, sans-serif;
+    user-select: none;
+    text-shadow: 0 0 5px rgba(179, 229, 252, 0.5); /* Subtle blue glow */
+}
+
+.hour-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    transform-origin: 50% calc(-50% + 110px); /* Adjust based on clock size */
+    transform: rotate(0deg); /* Rotation will be applied dynamically */
+    z-index: 1;
+    border-radius: 2px;
+}
+
+/* Minute marks */
+.minute-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    transform-origin: 50% calc(-50% + 115px); /* Adjust based on clock size */
+    transform: rotate(0deg); /* Rotation will be applied dynamically */
+    z-index: 1;
+    border-radius: 1px;
 }
 
 #weather {
@@ -199,9 +266,30 @@ body {
 
 @media (max-width: 900px) {
     #clock {
+        width: 180px;
+        height: 180px;
+        margin: 20px 0 0 20px;
+    }
+    
+    #clock::before {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .hand.hour {
+        width: 60px;
+    }
+    
+    .hand.minute {
+        width: 80px;
+    }
+    
+    .hand.second {
         width: 90px;
-        height: 90px;
-        margin: 14px 0 0 10px;
+    }
+    
+    .clock-number {
+        font-size: 1rem;
     }
     #weather {
         font-size: 1rem;
@@ -229,9 +317,38 @@ body {
 
 @media (max-width: 600px) {
     #clock {
-        width: 60px;
-        height: 60px;
-        margin: 6px 0 0 4vw;
+        width: 140px;
+        height: 140px;
+        margin: 10px 0 0 10px;
+    }
+    
+    #clock::before {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .hand.hour {
+        width: 45px;
+        height: 5px;
+    }
+    
+    .hand.minute {
+        width: 65px;
+        height: 3px;
+    }
+    
+    .hand.second {
+        width: 70px;
+        height: 2px;
+    }
+    
+    .center-dot {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .clock-number {
+        font-size: 0.8rem;
     }
     #weather {
         font-size: 0.95rem;

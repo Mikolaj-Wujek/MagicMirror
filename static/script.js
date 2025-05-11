@@ -14,11 +14,12 @@ function updateClockHands() {
     document.getElementById('second-hand').style.transform = `rotate(${secDeg}deg)`;
 }
 
-function addClockNumbers() {
+function createClockFace() {
     const clock = document.getElementById('clock');
+    
     for (let i = 1; i <= 12; i++) {
         const angle = (i - 3) * 30 * (Math.PI / 180);
-        const radius = clock.offsetWidth / 2 - 22;
+        const radius = clock.offsetWidth / 2 - 25;
         const x = (clock.offsetWidth / 2) + radius * Math.cos(angle);
         const y = (clock.offsetHeight / 2) + radius * Math.sin(angle);
 
@@ -26,20 +27,51 @@ function addClockNumbers() {
         num.className = 'clock-number';
         num.textContent = i;
         num.style.position = 'absolute';
-        num.style.left = `${x - 10}px`;
-        num.style.top = `${y - 12}px`;
-        num.style.color = '#b3e5fc';
-        num.style.fontSize = '1rem';
-        num.style.fontWeight = '700';
-        num.style.userSelect = 'none';
+        num.style.left = `${x}px`;
+        num.style.top = `${y}px`;
+        num.style.transform = 'translate(-50%, -50%)';
         clock.appendChild(num);
+    }
+    
+    for (let i = 0; i < 12; i++) {
+        const mark = document.createElement('div');
+        mark.className = 'hour-mark';
+        mark.style.transform = `rotate(${i * 30}deg)`;
+        clock.appendChild(mark);
+    }
+    
+    for (let i = 0; i < 60; i++) {
+        if (i % 5 !== 0) {
+            const mark = document.createElement('div');
+            mark.className = 'minute-mark';
+            mark.style.transform = `rotate(${i * 6}deg)`;
+            clock.appendChild(mark);
+        }
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    addClockNumbers();
+function initClock() {
+    const clock = document.getElementById('clock');
+    const handElements = Array.from(document.querySelectorAll('.hand, .center-dot'));
+    const childrenToKeep = new Set(handElements);
+    
+    Array.from(clock.children).forEach(child => {
+        if (!childrenToKeep.has(child)) {
+            clock.removeChild(child);
+        }
+    });
+    
+    createClockFace();
     updateClockHands();
     setInterval(updateClockHands, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initClock();
+    
+    window.addEventListener('resize', function() {
+        setTimeout(initClock, 100);
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function() {

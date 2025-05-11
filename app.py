@@ -8,10 +8,9 @@ import requests
 import os
 import json
 
-
-from google_auth_oauthlib.flow import Flow
-from googleapiclient.discovery import build
-from google.oauth2.credentials import Credentials
+# from google_auth_oauthlib.flow import Flow
+# from googleapiclient.discovery import build
+# from google.oauth2.credentials import Credentials
 
 load_dotenv()
 api_key = os.getenv("OPENWEATHER_API_KEY")
