@@ -19,15 +19,33 @@
         </figure>
     </section>
     <section id="weather" aria-label="Weather">
-        <p>{{ weather.temp }}°C, {{ weather.description }}<br>
-        <span style="font-size:0.9em;">{{ weather.location }}</span></p>
         {% if weather.icon_url %}
             <img src="{{ weather.icon_url }}" alt="Weather Icon">
         {% endif %}
         <p>{{ weather.emoji }}</p>
+        <p>{{ weather.temp }}°C, {{ weather.description }}<br>
+        <span style="font-size:0.9em;">{{ weather.location }}</span></p>
     </section>
     <section id="music" aria-label="Music">
-        <p><strong>{{ spotify.track }}</strong> <span style="font-size:0.95em;">by</span> {{ spotify.artist }}</p>
+        <div class="player-container">
+            <div class="track-info">
+                <p class="track-title"><strong>{{ spotify.track }}</strong></p>
+                <p class="track-artist">{{ spotify.artist }}</p>
+            </div>
+            <div class="player-controls">
+                <button class="control-btn" id="prev-btn" aria-label="Previous track">⏮</button>
+                <button class="control-btn play-btn" id="play-btn" aria-label="Play">⏵</button>
+                <button class="control-btn pause-btn" id="pause-btn" aria-label="Pause">⏸</button>
+                <button class="control-btn" id="next-btn" aria-label="Next track">⏭</button>
+            </div>
+            <div class="progress-container">
+                <span class="time-current">0:00</span>
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <span class="time-total">3:45</span>
+            </div>
+        </div>
     </section>
 </body>
 </html>

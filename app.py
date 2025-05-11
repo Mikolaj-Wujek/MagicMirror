@@ -29,8 +29,10 @@ def index():
     }
 
     spotify = {
-        'track' : 'currentSong',
-        'artist' : 'artistName'
+        'track': 'Blinding Lights',
+        'artist': 'The Weeknd',
+        'duration': '3:20',
+        'is_playing': False
     }
 
     return render_template('base.html',weather=weather,clock=clock,spotify=spotify)
@@ -59,4 +61,3 @@ def getWeather(location='Cork'):
             'icon_url': None,
             'emoji': '🌥️'  
         }
-    
