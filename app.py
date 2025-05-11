@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, g, request
+from flask import Flask, render_template, session, redirect, url_for, g, request, jsonify
 from database import get_db, close_db
 from flask_session import Session
 from functools import wraps
@@ -6,6 +6,12 @@ from dotenv import load_dotenv
 from datetime import datetime
 import requests
 import os
+import json
+
+
+from google_auth_oauthlib.flow import Flow
+from googleapiclient.discovery import build
+from google.oauth2.credentials import Credentials
 
 load_dotenv()
 api_key = os.getenv("OPENWEATHER_API_KEY")
